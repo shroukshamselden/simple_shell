@@ -16,7 +16,7 @@ int main()
         
         bool pipe = true;
         char* prompt = "cisfun$ ";
-        char* ctrl = "^c";
+        char* ctrl = "^c\n";
         char* comnd = NULL;
         size_t buff_size = 0;
         while (1 && pipe)
@@ -32,7 +32,7 @@ int main()
         
             if (letrs == -1)
             {
-                write(1, ctrl, 2); /*checks if getline fails or recieved ctrl+d*/
+                write(1, ctrl, 3); /*checks if getline fails or recieved ctrl+d*/
                 free(comnd);
                 exit(1);
             }
