@@ -4,7 +4,11 @@
 #include <string.h>
 #include <stdbool.h>
 #include <sys/wait.h>
+#include "main.h"
+
 #define NUM_ARGS 10
+
+extern char **environ; /* Declare environ*/
 
 int main()
 { 
@@ -48,6 +52,29 @@ int main()
                 a_rgv[a_rgc] = strtok(NULL, " "); /*cut from the last space untill the second one*/
             }
             a_rgv[a_rgc] = NULL;
+
+	     /* Check if the command is "exit"*/
+            if (is_exit_command(a_rgv[0]))
+            {
+                free(comnd);
+                exit(0);
+            }
+
+	    /* Check if the command is "env"*/
+if (a_rgv[0][0] == 'e' && a_rgv[0][1] == 'n' && a_rgv[0][2] == 'v' && a_rgv[0][3] == '\0')
+{
+    /*Print the current environment variables*/
+    int i = 0;
+    while(environ[i]) {
+        int len = 0;
+        while(environ[i][len] != '\0') {
+            len++;
+        }
+        write_string(environ[i], len);
+        write(STDOUT_FILENO, "\n", 1);
+        i++;
+    }
+}
             
             pid = fork(); /*create child process*/
             if (pid == -1)
