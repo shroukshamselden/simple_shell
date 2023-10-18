@@ -77,8 +77,8 @@ int main(void)
 		}
 		if (pid == 0)
 		{
-			/**val = execve(a_rgv[0], a_rgv, NULL);*/
-			val = execvp(a_rgv[0], a_rgv);
+			val = execve(a_rgv[0], a_rgv, NULL);
+			/**val = execvp(a_rgv[0], a_rgv);*/
 			if (val == -1)
 			{
 				perror("./shell");
