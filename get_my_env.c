@@ -2,14 +2,14 @@
 
 
 /**
- * _getenv - it can get the val of za environ var.
+ * _get_env - it can get the val of za environ var.
  *
  * @in_fo : it isa  Structure that contain an args.
  * @nme : var name of env.
  *
  * Return:  value will be returned.
 */
-char *_getenv(inf_t *in_fo, const char *nme)
+char *_get_env(inf_t *in_fo, const char *nme)
 {
 	list_t *nde  = in_fo->env;
 	char *h;

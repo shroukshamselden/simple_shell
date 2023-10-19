@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
-  * _setenv - Initialize a new environment variable.
+  * _set_env - Initialize a new environment variable.
   * @in_fo: Structure containing potential arguments.
   * @var : str env var propert.
   * @val : str env var val.
   * Return: Always 0.
 */
 
-int _setenv(inf_t *in_fo, char *vr, char *val)
+int _set_env(inf_t *in_fo, char *vr, char *val)
 {
 	char *bf = NULL;
 	list_t *nde;
