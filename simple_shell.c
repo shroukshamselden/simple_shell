@@ -39,35 +39,8 @@ int main(void)
 				}
 			}
 			execute_command(a_rgv, &pid, &s_status);
-		}
-<<<<<<< HEAD
+	}
 		free(comnd);
 	}
 		return (0);
-=======
-		pid = fork(); /*create child process*/
-		if (pid == -1)
-		{
-			perror("Error: fork has failed");
-			free(comnd);
-			exit(1);
-		}
-		if (pid == 0)
-		{
-			val = execve(a_rgv[0], a_rgv, NULL);
-			/**val = execvp(a_rgv[0], a_rgv);*/
-			if (val == -1)
-			{
-				perror("./shell");
-				free(comnd);
-				exit(1);
-			}
-		}
-		if (waitpid(pid, &s_status, 0) == -1)
-		{
-			perror("Error: waitpid failed");
-			free(comnd);
-			exit(1);
-		}
->>>>>>> 21a6cb96d8e22e0fbc424f9c23c1cd7a420c99dd
-	}
+}
