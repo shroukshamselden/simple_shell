@@ -10,7 +10,8 @@ int is_exit_command(char *command)
 	{
 		if (command[2] == 'i' && command[3] == 't')
 		{
-		return (1);
+			write(1, "\n", 1);
+			return (1);
 		}
 	}
 	return (0);

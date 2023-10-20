@@ -10,7 +10,6 @@
 void execute_command(char *a_rgv[NUM_ARGS], pid_t *pid, int *s_status)
 {
 	int val;
-	char *comnd = NULL;
 
 	*pid = fork();
 	if (*pid == -1)
@@ -25,14 +24,12 @@ void execute_command(char *a_rgv[NUM_ARGS], pid_t *pid, int *s_status)
 		if (val == -1)
 		{
 			perror("./shell");
-			free(comnd);
 			exit(1);
 		}
 	}
 	if (waitpid(*pid, s_status, 0) == -1)
 	{
 		perror("Error: waitpid failed");
-		free(comnd);
 		exit(1);
 	}
 }
