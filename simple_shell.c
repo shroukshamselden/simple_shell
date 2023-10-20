@@ -16,7 +16,7 @@ int main(void)
 
 	while (1)
 	{
-		write(1, "> ", 2);
+		write(1, "$ ", 2);
 		while
 			(read(0, &cmnd[i], 1) != -1 && cmnd[i] != '\n' && i < BUFFER_SIZE - 1)
 		{
