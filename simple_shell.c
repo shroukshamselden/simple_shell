@@ -1,46 +1,37 @@
 #include "main.h"
 
 /**
- * main - entry point
- * Return: 0 alawys success
+ * main - Entry point
+ * Return: 0 always success
  */
+
 
 int main(void)
 {
 	int s_status;
 	pid_t pid;
-	char *a_rgv[NUM_ARGS]; /* hold args of comnd included comnd itself*/
-	bool pipe = true;
-	char *comnd = NULL;
-	size_t buff_size = 0;
+	char *a_rgv[NUM_ARGS];
+	char command[100];
 	int i = 0;
 
-	while (1 && pipe)
+	while (1)
 	{
-		if (isatty(STDIN_FILENO) == 0) /*check if we are using terminal or pipe*/
+		write(1, "> ", 2);
+		while
+			(read(0, &command[i], 1) != -1 && command[i] != '\n' && i < BUFFER_SIZE - 1)
 		{
-			pipe = false;
+			write(1, &command[i], 1);
+			i++;
 		}
-		comnd = read_command(comnd, &buff_size);
-		parse_command(comnd, a_rgv);
+		command[i] = '\0';
+		i = 0;
+		parse_command(command, a_rgv);
 		if (is_exit_command(a_rgv[0]))
 		{
-			free(comnd);
 			exit(0);
 		}
-		if (a_rgv[0][0] == 'e' && a_rgv[0][1] == 'n')
-		{
-			if (a_rgv[0][2] == 'v' && a_rgv[0][3] == '\0')
-			{
-				while (environ[i])
-				{
-					print_env(environ, i);
-					i++;
-				}
-			}
-			execute_command(a_rgv, &pid, &s_status);
+		execute_command(a_rgv, &pid, &s_status);
+		write(1, "\n", 1);
 	}
-		free(comnd);
-	}
-		return (0);
+	return (0);
 }

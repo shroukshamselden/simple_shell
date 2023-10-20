@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <errno.h>
 
+#define BUFFER_SIZE 100
 #define NUM_ARGS 10
 #define WRTE_BFF_SZE 1024
 #define BUFF_FLSH -1
